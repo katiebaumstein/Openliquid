@@ -427,9 +427,10 @@
 
 .hero-subtitle {
   font-size: 20px;
-  color: #888;
+  color: #fff;
   line-height: 1.6;
   margin-bottom: 48px;
+  opacity: 0.9;
 }
 
 .hero-buttons {
@@ -529,8 +530,9 @@
 
 .features-subtitle {
   font-size: 20px;
-  color: #888;
+  color: #fff;
   margin-bottom: 64px;
+  opacity: 0.9;
 }
 
 .features-grid {
@@ -716,9 +718,10 @@
 }
 
 .feature-card p {
-  color: #888;
+  color: #fff;
   line-height: 1.6;
   font-size: 16px;
+  opacity: 0.85;
 }
 
 /* Hero Badge */
@@ -892,9 +895,10 @@
 
 .section-subtitle {
   font-size: 20px;
-  color: #888;
+  color: #fff;
   text-align: center;
   margin-bottom: 64px;
+  opacity: 0.9;
 }
 
 .steps-grid {
@@ -937,8 +941,9 @@
 }
 
 .step-card p {
-  color: #888;
+  color: #fff;
   line-height: 1.6;
+  opacity: 0.85;
 }
 
 .step-arrow {
@@ -1133,8 +1138,9 @@
 }
 
 .faq-answer p {
-  color: #888;
+  color: #fff;
   line-height: 1.6;
+  opacity: 0.85;
 }
 
 @keyframes fadeIn {
@@ -1172,8 +1178,9 @@
 
 .cta-subtitle {
   font-size: 20px;
-  color: #888;
+  color: #fff;
   margin-bottom: 48px;
+  opacity: 0.9;
 }
 
 .cta-buttons {
@@ -1291,6 +1298,346 @@
   padding-top: 24px;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   color: #666;
+}
+
+/* Footer Banner */
+.footer-banner {
+  position: relative;
+  background: #000;
+  padding: 200px 24px;
+  overflow: hidden;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer-banner-content {
+  position: relative;
+  text-align: center;
+  z-index: 2;
+  width: 100%;
+}
+
+.footer-logo-large {
+  font-size: 220px;
+  font-weight: 900;
+  letter-spacing: -8px;
+  line-height: 1;
+  display: inline-flex;
+  align-items: baseline;
+  position: relative;
+  animation: logoFloat 6s ease-in-out infinite;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+@keyframes logoFloat {
+  0%, 100% {
+    transform: translateY(0px) rotateX(0deg) scale(1);
+  }
+  25% {
+    transform: translateY(-20px) rotateX(5deg) scale(1.02);
+  }
+  50% {
+    transform: translateY(0px) rotateX(0deg) scale(1.05);
+  }
+  75% {
+    transform: translateY(-10px) rotateX(-3deg) scale(1.02);
+  }
+}
+
+.logo-open-large {
+  background: linear-gradient(45deg, #00d4ff, #00ff88, #00d4ff, #00ff88);
+  background-size: 400% 400%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: 
+    gradientShiftLarge 3s ease-in-out infinite,
+    textGlow 2s ease-in-out infinite alternate;
+  font-weight: 900;
+  position: relative;
+}
+
+.logo-liquid-large {
+  background: linear-gradient(45deg, #00ff88, #00d4ff, #00ff88, #00d4ff);
+  background-size: 400% 400%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: 
+    gradientShiftLarge 3s ease-in-out infinite reverse,
+    textGlow 2s ease-in-out infinite alternate;
+  font-weight: 200;
+  font-style: italic;
+  letter-spacing: 4px;
+  margin-left: 16px;
+  opacity: 0.95;
+}
+
+@keyframes gradientShiftLarge {
+  0% { 
+    background-position: 0% 50%;
+  }
+  50% { 
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes textGlow {
+  0% {
+    filter: brightness(1) drop-shadow(0 0 20px rgba(0, 212, 255, 0.5));
+  }
+  100% {
+    filter: brightness(1.3) drop-shadow(0 0 40px rgba(0, 255, 136, 0.8));
+  }
+}
+
+.footer-banner-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 120%;
+  height: 600px;
+  background: radial-gradient(ellipse at center, rgba(0, 212, 255, 0.25) 0%, rgba(0, 255, 136, 0.15) 30%, transparent 70%);
+  filter: blur(80px);
+  animation: 
+    bannerGlowPulse 4s ease-in-out infinite,
+    glowRotate 10s linear infinite;
+}
+
+@keyframes bannerGlowPulse {
+  0%, 100% {
+    opacity: 0.3;
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+  50% {
+    opacity: 0.8;
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+}
+
+@keyframes glowRotate {
+  0% {
+    filter: blur(80px) hue-rotate(0deg);
+  }
+  100% {
+    filter: blur(80px) hue-rotate(360deg);
+  }
+}
+
+.footer-banner-particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(3px 3px at 10% 20%, rgba(0, 212, 255, 0.6), transparent),
+    radial-gradient(2px 2px at 30% 40%, rgba(0, 255, 136, 0.5), transparent),
+    radial-gradient(1px 1px at 50% 60%, rgba(0, 212, 255, 0.4), transparent),
+    radial-gradient(2px 2px at 70% 80%, rgba(0, 255, 136, 0.6), transparent),
+    radial-gradient(3px 3px at 90% 10%, rgba(0, 212, 255, 0.5), transparent),
+    radial-gradient(1px 1px at 20% 90%, rgba(0, 255, 136, 0.4), transparent),
+    radial-gradient(2px 2px at 80% 30%, rgba(0, 212, 255, 0.5), transparent);
+  background-size: 100% 100%;
+  animation: 
+    particleFloat 15s linear infinite,
+    particleFade 3s ease-in-out infinite alternate;
+}
+
+@keyframes particleFloat {
+  0% {
+    transform: translateY(0) translateX(0) rotate(0deg);
+  }
+  33% {
+    transform: translateY(-80px) translateX(60px) rotate(120deg);
+  }
+  66% {
+    transform: translateY(-40px) translateX(-40px) rotate(240deg);
+  }
+  100% {
+    transform: translateY(0) translateX(0) rotate(360deg);
+  }
+}
+
+@keyframes particleFade {
+  0% {
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 0.8;
+  }
+}
+
+/* Additional animated elements */
+.footer-banner::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(from 0deg at 50% 50%, transparent 0deg, rgba(0, 212, 255, 0.1) 60deg, transparent 120deg);
+  animation: rotateGradient 20s linear infinite;
+}
+
+.footer-banner::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(from 180deg at 50% 50%, transparent 0deg, rgba(0, 255, 136, 0.1) 60deg, transparent 120deg);
+  animation: rotateGradient 25s linear infinite reverse;
+}
+
+@keyframes rotateGradient {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Secondary glow effect */
+.footer-banner-glow.secondary {
+  width: 150%;
+  height: 800px;
+  background: radial-gradient(ellipse at center, rgba(0, 255, 136, 0.2) 0%, rgba(0, 212, 255, 0.1) 40%, transparent 70%);
+  animation: 
+    bannerGlowPulse 6s ease-in-out infinite reverse,
+    glowRotate 15s linear infinite reverse;
+  animation-delay: 2s;
+}
+
+/* Animated lines */
+.footer-banner-lines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+}
+
+.animated-line {
+  position: absolute;
+  height: 1px;
+  width: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.6), transparent);
+  top: calc(10% + var(--line-index) * 10%);
+  left: -100%;
+  animation: lineSlide calc(8s + var(--line-index) * 0.5s) linear infinite;
+  animation-delay: calc(var(--line-index) * 0.3s);
+}
+
+@keyframes lineSlide {
+  0% {
+    left: -100%;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    left: 100%;
+    opacity: 0;
+  }
+}
+
+/* Floating orbs for banner */
+.footer-banner-orbs {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+}
+
+.floating-orb-banner {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(2px);
+}
+
+.floating-orb-banner.orb-1 {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(0, 212, 255, 0.3) 0%, transparent 70%);
+  top: -10%;
+  left: -10%;
+  animation: 
+    orbitMotion 20s linear infinite,
+    orbPulse 4s ease-in-out infinite;
+}
+
+.floating-orb-banner.orb-2 {
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(0, 255, 136, 0.3) 0%, transparent 70%);
+  bottom: -10%;
+  right: -10%;
+  animation: 
+    orbitMotion 25s linear infinite reverse,
+    orbPulse 5s ease-in-out infinite;
+  animation-delay: 1s;
+}
+
+.floating-orb-banner.orb-3 {
+  width: 250px;
+  height: 250px;
+  background: radial-gradient(circle, rgba(0, 212, 255, 0.2) 0%, transparent 70%);
+  top: 50%;
+  left: 20%;
+  animation: 
+    orbitMotion 30s linear infinite,
+    orbPulse 3s ease-in-out infinite;
+  animation-delay: 2s;
+}
+
+.floating-orb-banner.orb-4 {
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(circle, rgba(0, 255, 136, 0.2) 0%, transparent 70%);
+  top: 30%;
+  right: 20%;
+  animation: 
+    orbitMotion 22s linear infinite reverse,
+    orbPulse 6s ease-in-out infinite;
+  animation-delay: 3s;
+}
+
+@keyframes orbitMotion {
+  0% {
+    transform: translate(0, 0) rotate(0deg) translateX(100px) rotate(0deg);
+  }
+  100% {
+    transform: translate(0, 0) rotate(360deg) translateX(100px) rotate(-360deg);
+  }
+}
+
+@keyframes orbPulse {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.2);
+  }
 }
 
 /* Mobile Menu Styles */
@@ -1441,6 +1788,8 @@
   .hero-subtitle {
     font-size: 16px;
     margin-bottom: 32px;
+    color: #fff;
+    opacity: 0.9;
   }
   
   .hero-buttons {
@@ -1459,52 +1808,111 @@
   
   /* Features Section Mobile */
   .features-section {
-    padding: 60px 16px;
+    padding: 40px 16px;
   }
   
   .features-title {
-    font-size: 32px;
+    font-size: 28px;
+    margin-bottom: 8px;
   }
   
   .features-subtitle {
-    font-size: 16px;
-    margin-bottom: 40px;
+    font-size: 14px;
+    margin-bottom: 32px;
+    color: #fff;
+    opacity: 0.9;
   }
   
   .features-grid {
     grid-template-columns: 1fr;
-    gap: 20px;
+    gap: 16px;
   }
   
   .feature-card {
-    padding: 32px 24px;
+    padding: 24px 20px;
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    text-align: left;
+  }
+  
+  .feature-icon {
+    padding: 12px;
+    margin-bottom: 0;
+    flex-shrink: 0;
+  }
+  
+  .feature-icon svg {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .feature-content {
+    flex: 1;
   }
   
   .feature-card h3 {
-    font-size: 20px;
+    font-size: 18px;
+    margin-bottom: 8px;
   }
   
   .feature-card p {
-    font-size: 14px;
+    font-size: 13px;
+    line-height: 1.4;
+  }
+  
+  /* Hide floating card animations on mobile */
+  .floating-card {
+    animation: none;
+  }
+  
+  .card-glow,
+  .icon-pulse {
+    display: none;
   }
   
   /* How it Works Mobile */
   .how-it-works {
-    padding: 60px 16px;
+    padding: 40px 16px;
   }
   
   .section-title {
-    font-size: 32px;
+    font-size: 28px;
+    margin-bottom: 8px;
   }
   
   .section-subtitle {
-    font-size: 16px;
-    margin-bottom: 40px;
+    font-size: 14px;
+    margin-bottom: 32px;
   }
   
   .steps-grid {
     grid-template-columns: 1fr;
-    gap: 24px;
+    gap: 16px;
+  }
+  
+  .step-card {
+    padding: 20px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  
+  .step-number {
+    font-size: 32px;
+    line-height: 1;
+    margin-bottom: 0;
+    flex-shrink: 0;
+  }
+  
+  .step-card h3 {
+    font-size: 18px;
+    margin-bottom: 8px;
+  }
+  
+  .step-card p {
+    font-size: 13px;
+    line-height: 1.4;
   }
   
   .step-arrow {
@@ -1513,36 +1921,74 @@
   
   /* Exchanges Section Mobile */
   .exchanges-section {
-    padding: 60px 16px;
+    padding: 40px 16px;
   }
   
   .exchanges-grid {
-    grid-template-columns: 1fr;
-    gap: 16px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  
+  .exchange-card {
+    padding: 20px 16px;
+    text-align: center;
+  }
+  
+  .exchange-logo {
+    font-size: 18px;
+    padding: 16px;
+    margin-bottom: 12px;
+  }
+  
+  .exchange-stats {
+    gap: 4px;
+  }
+  
+  .traders-count {
+    font-size: 14px;
+  }
+  
+  .volume {
+    font-size: 12px;
   }
   
   /* FAQ Section Mobile */
   .faq-section {
-    padding: 60px 16px;
+    padding: 40px 16px;
+  }
+  
+  .faq-item {
+    margin-bottom: 12px;
   }
   
   .faq-question {
-    font-size: 16px;
-    padding: 20px;
+    font-size: 15px;
+    padding: 16px;
+    font-weight: 500;
+  }
+  
+  .faq-answer {
+    padding: 0 16px 16px;
+  }
+  
+  .faq-answer p {
+    font-size: 13px;
+    line-height: 1.5;
   }
   
   /* CTA Section Mobile */
   .cta-section {
-    padding: 80px 16px;
+    padding: 60px 16px;
   }
   
   .cta-title {
-    font-size: 36px;
+    font-size: 32px;
+    margin-bottom: 12px;
   }
   
   .cta-subtitle {
-    font-size: 16px;
-    margin-bottom: 32px;
+    font-size: 14px;
+    margin-bottom: 24px;
   }
   
   .cta-buttons {
@@ -1583,6 +2029,41 @@
   
   /* Reduce floating orbs on mobile */
   .floating-orb {
+    display: none;
+  }
+  
+  /* Footer Banner Mobile */
+  .footer-banner {
+    padding: 120px 16px;
+    min-height: 60vh;
+  }
+  
+  .footer-logo-large {
+    font-size: 80px;
+    letter-spacing: -3px;
+  }
+  
+  .logo-liquid-large {
+    margin-left: 6px;
+    letter-spacing: 1px;
+  }
+  
+  .footer-banner-glow {
+    width: 100%;
+    height: 300px;
+  }
+  
+  .footer-banner::before,
+  .footer-banner::after {
+    display: none; /* Hide rotating gradients on mobile for performance */
+  }
+  
+  .footer-banner-lines,
+  .footer-banner-orbs {
+    display: none; /* Hide complex animations on mobile */
+  }
+  
+  .footer-banner-glow.secondary {
     display: none;
   }
 }

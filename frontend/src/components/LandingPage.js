@@ -173,8 +173,10 @@ const LandingPage = () => {
                 <Shield size={40} />
                 <div className="icon-pulse"></div>
               </div>
-              <h3>Real-Time Leaderboards</h3>
-              <p>Live aggregated performance data from all major exchanges updated every minute</p>
+              <div className="feature-content">
+                <h3>Real-Time Leaderboards</h3>
+                <p>Live aggregated performance data from all major exchanges updated every minute</p>
+              </div>
               <div className="card-glow"></div>
             </div>
             
@@ -183,8 +185,10 @@ const LandingPage = () => {
                 <Users size={40} />
                 <div className="icon-pulse"></div>
               </div>
-              <h3>Multi-Exchange Coverage</h3>
-              <p>Copy traders from Binance, OKX, Bybit, Bitget & Hyperliquid all in one place</p>
+              <div className="feature-content">
+                <h3>Multi-Exchange Coverage</h3>
+                <p>Copy traders from Binance, OKX, Bybit, Bitget & Hyperliquid all in one place</p>
+              </div>
               <div className="card-glow"></div>
             </div>
             
@@ -193,8 +197,10 @@ const LandingPage = () => {
                 <Zap size={40} />
                 <div className="icon-pulse"></div>
               </div>
-              <h3>Unified Trading Interface</h3>
-              <p>One platform to track, analyze, and execute perpetual futures trades across all exchanges</p>
+              <div className="feature-content">
+                <h3>Unified Trading Interface</h3>
+                <p>One platform to track, analyze, and execute perpetual futures trades across all exchanges</p>
+              </div>
               <div className="card-glow"></div>
             </div>
           </div>
@@ -209,32 +215,40 @@ const LandingPage = () => {
           <div className="steps-grid">
             <div className="step-card">
               <div className="step-number">01</div>
-              <h3>Explore Leaderboards</h3>
-              <p>Browse top traders across all exchanges without any setup required.</p>
+              <div className="step-content">
+                <h3>Explore Leaderboards</h3>
+                <p>Browse top traders across all exchanges without any setup required.</p>
+              </div>
             </div>
             <div className="step-arrow">
               <ArrowRight size={24} />
             </div>
             <div className="step-card">
               <div className="step-number">02</div>
-              <h3>Pick Winners</h3>
-              <p>Analyze performance stats and find profitable traders to follow.</p>
+              <div className="step-content">
+                <h3>Pick Winners</h3>
+                <p>Analyze performance stats and find profitable traders to follow.</p>
+              </div>
             </div>
             <div className="step-arrow">
               <ArrowRight size={24} />
             </div>
             <div className="step-card">
               <div className="step-number">03</div>
-              <h3>Set Your Style</h3>
-              <p>Choose how much to copy and configure your risk preferences.</p>
+              <div className="step-content">
+                <h3>Set Your Style</h3>
+                <p>Choose how much to copy and configure your risk preferences.</p>
+              </div>
             </div>
             <div className="step-arrow">
               <ArrowRight size={24} />
             </div>
             <div className="step-card">
               <div className="step-number">04</div>
-              <h3>Start Copying</h3>
-              <p>Automatically mirror trades from your chosen traders in real-time.</p>
+              <div className="step-content">
+                <h3>Start Copying</h3>
+                <p>Automatically mirror trades from your chosen traders in real-time.</p>
+              </div>
             </div>
           </div>
         </div>
@@ -243,7 +257,7 @@ const LandingPage = () => {
       <section className="exchanges-section">
         <div className="container">
           <h2 className="section-title">Supported Exchanges</h2>
-          <p className="section-subtitle">Access perpetual futures markets across all major centralized exchanges</p>
+          <p className="section-subtitle">Access perpetual futures markets across major centralized and decentralized exchanges</p>
           
           <div className="exchanges-grid">
             <div className="exchange-card">
@@ -383,6 +397,29 @@ const LandingPage = () => {
           </div>
         </div>
       </footer>
+      
+      <section className="footer-banner">
+        <div className="footer-banner-content">
+          <div className="footer-logo-large">
+            <span className="logo-open-large">Open</span>
+            <span className="logo-liquid-large">liquid</span>
+          </div>
+          <div className="footer-banner-glow"></div>
+          <div className="footer-banner-glow secondary"></div>
+          <div className="footer-banner-particles"></div>
+          <div className="footer-banner-lines">
+            {[...Array(10)].map((_, i) => (
+              <div key={i} className="animated-line" style={{ '--line-index': i }}></div>
+            ))}
+          </div>
+          <div className="footer-banner-orbs">
+            <div className="floating-orb-banner orb-1"></div>
+            <div className="floating-orb-banner orb-2"></div>
+            <div className="floating-orb-banner orb-3"></div>
+            <div className="floating-orb-banner orb-4"></div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 };
