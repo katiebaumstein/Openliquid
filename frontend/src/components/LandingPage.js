@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './LandingPage.css';
-import { Shield, Users, Zap, ArrowRight, Globe, Twitter, Github, MessageCircle, ChevronDown, ChevronUp, Rocket } from 'lucide-react';
+import { Shield, Users, Zap, ArrowRight, Globe, Twitter, Github, MessageCircle, ChevronDown, ChevronUp, Rocket, Menu, X } from 'lucide-react';
 
 const LandingPage = () => {
   const [openFaq, setOpenFaq] = useState(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const heroRef = useRef(null);
 
   useEffect(() => {
@@ -97,12 +98,26 @@ const LandingPage = () => {
             </div>
           </div>
           <div className="nav-right">
-            <button className="launch-app-btn magnetic-btn">
+            <button className="launch-app-btn magnetic-btn desktop-only">
               <span>Launch App</span>
               <div className="btn-glow"></div>
             </button>
+            <button className="mobile-menu-toggle" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+              {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
           </div>
         </div>
+        {mobileMenuOpen && (
+          <div className="mobile-menu">
+            <a href="#dashboard" className="mobile-nav-link" onClick={() => setMobileMenuOpen(false)}>Dashboard</a>
+            <a href="#discover" className="mobile-nav-link" onClick={() => setMobileMenuOpen(false)}>Discover KOLs</a>
+            <a href="#portfolio" className="mobile-nav-link" onClick={() => setMobileMenuOpen(false)}>My Portfolio</a>
+            <a href="#kol" className="mobile-nav-link" onClick={() => setMobileMenuOpen(false)}>KOL Dashboard</a>
+            <button className="launch-app-btn mobile-launch-btn" onClick={() => setMobileMenuOpen(false)}>
+              <span>Launch App</span>
+            </button>
+          </div>
+        )}
       </nav>
 
       <section ref={heroRef} className="hero-section" id="hero" data-animate>
