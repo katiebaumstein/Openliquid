@@ -2,6 +2,16 @@ const axios = require('axios');
 const cheerio = require('cheerio');
 const puppeteer = require('puppeteer');
 
+// Common browser headers
+const browserHeaders = {
+  'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+  'Accept': 'application/json, text/plain, */*',
+  'Accept-Language': 'en-US,en;q=0.9',
+  'Accept-Encoding': 'gzip, deflate, br',
+  'Cache-Control': 'no-cache',
+  'Pragma': 'no-cache'
+};
+
 const normalizeTraderData = (trader, exchange) => {
   return {
     ...trader,
@@ -22,7 +32,9 @@ const crawlBinance = async () => {
         tradeType: 'PERPETUAL'
       },
       headers: {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
+        ...browserHeaders,
+        'Origin': 'https://www.binance.com',
+        'Referer': 'https://www.binance.com/en/futures-activity/leaderboard'
       }
     });
 
@@ -45,26 +57,29 @@ const crawlBinance = async () => {
 
 const crawlOKX = async () => {
   try {
-    const response = await axios.get('https://www.okx.com/priapi/v5/ecotrade/public/profit-sharing-rank', {
-      params: {
-        instType: 'SWAP',
-        sortType: '7D_TOTAL_YIELD_RATE',
-        pageNo: 1,
-        pageSize: 50
-      },
+    const response = await axios.get('https://www.okx.com/api/v5/copytrading/public-lead-traders', {
       headers: {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
+        ...browserHeaders,
+        'Origin': 'https://www.okx.com',
+        'Referer': 'https://www.okx.com/copy-trading/leaderboard'
       }
     });
 
-    if (response.data && response.data.data && response.data.data.ranks) {
-      return response.data.data.ranks.map((trader, index) => normalizeTraderData({
+    if (response.data && response.data.data && response.data.data.length > 0) {
+      // OKX returns nested structure with ranks array
+      const traders = response.data.data[0].ranks || [];
+      return traders.slice(0, 50).map((trader, index) => normalizeTraderData({
         nickname: trader.nickName,
-        roi: trader.yieldRate,
-        pnl: trader.totalPnl,
+        roi: parseFloat(trader.pnlRatio || 0) * 100, // Convert to percentage (7.94 -> 794%)
+        pnl: parseFloat(trader.pnl || 0),
         rank: index + 1,
-        winRate: trader.winRate,
-        userId: trader.uniqueName
+        winRate: parseFloat(trader.winRatio || 0) * 100, // Convert to percentage (0.67 -> 67%)
+        userId: trader.uniqueCode || trader.nickName,
+        followers: parseInt(trader.copyTraderNum || 0),
+        aum: parseFloat(trader.aum || 0),
+        leadDays: parseInt(trader.leadDays || 0),
+        maxFollowers: parseInt(trader.maxCopyTraderNum || 0),
+        instruments: trader.traderInsts || []
       }, 'okx'));
     }
     return [];

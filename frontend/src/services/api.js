@@ -21,3 +21,20 @@ export const fetchExchangeData = async (exchange) => {
     throw error;
   }
 };
+
+export const fetchLeaderboard = async (exchange = '') => {
+  try {
+    const response = await axios.get(`${API_BASE_URL}/leaderboard`);
+    
+    if (!exchange || exchange === '' || exchange === 'all') {
+      // Return aggregated data for all exchanges
+      return response.data.data.aggregated || [];
+    } else {
+      // Return specific exchange data
+      return response.data.data[exchange] || [];
+    }
+  } catch (error) {
+    console.error('Error fetching leaderboard:', error);
+    return [];
+  }
+};

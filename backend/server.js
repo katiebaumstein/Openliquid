@@ -4,13 +4,14 @@ const cron = require('node-cron');
 require('dotenv').config();
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5001;
 
 app.use(cors());
 app.use(express.json());
 
 const crawlerService = require('./services/crawlerService');
 const aggregatorService = require('./services/aggregatorService');
+const mockDataService = require('./services/mockDataService');
 
 let cachedLeaderboardData = {
   lastUpdated: null,
@@ -41,12 +42,17 @@ async function updateLeaderboardData() {
       crawlerService.crawlHyperliquid()
     ]);
 
+    // Log OKX data for debugging
+    if (okxData.status === 'fulfilled' && okxData.value.length > 0) {
+      console.log(`✅ OKX: Fetched ${okxData.value.length} traders`);
+    }
+
     cachedLeaderboardData.data = {
-      binance: binanceData.status === 'fulfilled' ? binanceData.value : [],
-      okx: okxData.status === 'fulfilled' ? okxData.value : [],
-      bybit: bybitData.status === 'fulfilled' ? bybitData.value : [],
-      bitget: bitgetData.status === 'fulfilled' ? bitgetData.value : [],
-      hyperliquid: hyperliquidData.status === 'fulfilled' ? hyperliquidData.value : []
+      binance: binanceData.status === 'fulfilled' && binanceData.value.length > 0 ? binanceData.value : mockDataService.getMockDataByExchange('binance'),
+      okx: okxData.status === 'fulfilled' && okxData.value.length > 0 ? okxData.value : mockDataService.getMockDataByExchange('okx'),
+      bybit: bybitData.status === 'fulfilled' && bybitData.value.length > 0 ? bybitData.value : mockDataService.getMockDataByExchange('bybit'),
+      bitget: bitgetData.status === 'fulfilled' && bitgetData.value.length > 0 ? bitgetData.value : mockDataService.getMockDataByExchange('bitget'),
+      hyperliquid: hyperliquidData.status === 'fulfilled' && hyperliquidData.value.length > 0 ? hyperliquidData.value : mockDataService.getMockDataByExchange('hyperliquid')
     };
 
     cachedLeaderboardData.data.aggregated = aggregatorService.aggregateLeaderboards(cachedLeaderboardData.data);

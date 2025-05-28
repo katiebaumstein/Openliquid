@@ -1,8 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './LandingPage.css';
 import { Shield, Users, Zap, ArrowRight, Globe, Twitter, Github, MessageCircle, ChevronDown, ChevronUp, Rocket, Menu, X } from 'lucide-react';
 
 const LandingPage = () => {
+  const navigate = useNavigate();
   const [openFaq, setOpenFaq] = useState(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -92,13 +94,13 @@ const LandingPage = () => {
             </h1>
             <div className="nav-links">
               <a href="#dashboard" className="nav-link">Dashboard</a>
-              <a href="#discover" className="nav-link">Discover KOLs</a>
+              <a href="#" onClick={(e) => { e.preventDefault(); navigate('/dashboard'); }} className="nav-link">Discover KOLs</a>
               <a href="#portfolio" className="nav-link">My Portfolio</a>
               <a href="#kol" className="nav-link">KOL Dashboard</a>
             </div>
           </div>
           <div className="nav-right">
-            <button className="launch-app-btn magnetic-btn desktop-only">
+            <button className="launch-app-btn magnetic-btn desktop-only" onClick={() => navigate('/dashboard')}>
               <span>Launch App</span>
               <div className="btn-glow"></div>
             </button>
@@ -110,10 +112,10 @@ const LandingPage = () => {
         {mobileMenuOpen && (
           <div className="mobile-menu">
             <a href="#dashboard" className="mobile-nav-link" onClick={() => setMobileMenuOpen(false)}>Dashboard</a>
-            <a href="#discover" className="mobile-nav-link" onClick={() => setMobileMenuOpen(false)}>Discover KOLs</a>
+            <a href="#" className="mobile-nav-link" onClick={(e) => { e.preventDefault(); navigate('/dashboard'); setMobileMenuOpen(false); }}>Discover KOLs</a>
             <a href="#portfolio" className="mobile-nav-link" onClick={() => setMobileMenuOpen(false)}>My Portfolio</a>
             <a href="#kol" className="mobile-nav-link" onClick={() => setMobileMenuOpen(false)}>KOL Dashboard</a>
-            <button className="launch-app-btn mobile-launch-btn" onClick={() => setMobileMenuOpen(false)}>
+            <button className="launch-app-btn mobile-launch-btn" onClick={() => { navigate('/dashboard'); setMobileMenuOpen(false); }}>
               <span>Launch App</span>
             </button>
           </div>
@@ -149,7 +151,7 @@ const LandingPage = () => {
           </p>
           
           <div className="hero-buttons">
-            <button className="btn-primary magnetic-btn hover-lift">
+            <button className="btn-primary magnetic-btn hover-lift" onClick={() => navigate('/dashboard')}>
               <span>Discover KOLs</span>
               <div className="btn-particles"></div>
             </button>
@@ -174,8 +176,8 @@ const LandingPage = () => {
                 <div className="icon-pulse"></div>
               </div>
               <div className="feature-content">
-                <h3>Real-Time Leaderboards</h3>
-                <p>Live aggregated performance data from all major exchanges updated every minute</p>
+                <h3>No KYC Required</h3>
+                <p>Trade freely without identity verification. Connect your wallet and start copying top traders instantly with complete privacy</p>
               </div>
               <div className="card-glow"></div>
             </div>
@@ -186,8 +188,8 @@ const LandingPage = () => {
                 <div className="icon-pulse"></div>
               </div>
               <div className="feature-content">
-                <h3>Multi-Exchange Coverage</h3>
-                <p>Copy traders from Binance, OKX, Bybit, Bitget & Hyperliquid all in one place</p>
+                <h3>Cross-Exchange Coverage</h3>
+                <p>Access elite traders from 5+ major exchanges simultaneously. Compare performance metrics and copy the best strategies regardless of platform</p>
               </div>
               <div className="card-glow"></div>
             </div>
@@ -198,8 +200,8 @@ const LandingPage = () => {
                 <div className="icon-pulse"></div>
               </div>
               <div className="feature-content">
-                <h3>Unified Trading Interface</h3>
-                <p>One platform to track, analyze, and execute perpetual futures trades across all exchanges</p>
+                <h3>Instant Copy Trading</h3>
+                <p>Mirror positions from proven traders in real-time. Set your risk parameters and let successful strategies work for you automatically</p>
               </div>
               <div className="card-glow"></div>
             </div>
@@ -213,15 +215,13 @@ const LandingPage = () => {
           <p className="section-subtitle">Start trading with top performers in just 4 simple steps</p>
           
           <div className="steps-grid">
+            <div className="steps-connector"></div>
             <div className="step-card">
               <div className="step-number">01</div>
               <div className="step-content">
                 <h3>Explore Leaderboards</h3>
                 <p>Browse top traders across all exchanges without any setup required.</p>
               </div>
-            </div>
-            <div className="step-arrow">
-              <ArrowRight size={24} />
             </div>
             <div className="step-card">
               <div className="step-number">02</div>
@@ -230,18 +230,12 @@ const LandingPage = () => {
                 <p>Analyze performance stats and find profitable traders to follow.</p>
               </div>
             </div>
-            <div className="step-arrow">
-              <ArrowRight size={24} />
-            </div>
             <div className="step-card">
               <div className="step-number">03</div>
               <div className="step-content">
                 <h3>Set Your Style</h3>
                 <p>Choose how much to copy and configure your risk preferences.</p>
               </div>
-            </div>
-            <div className="step-arrow">
-              <ArrowRight size={24} />
             </div>
             <div className="step-card">
               <div className="step-number">04</div>
