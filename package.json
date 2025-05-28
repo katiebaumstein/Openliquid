@@ -1,0 +1,19 @@
+{
+  "name": "cross-exchange-leaderboard",
+  "version": "1.0.0",
+  "description": "Cross-exchange trading leaderboard aggregator",
+  "main": "index.js",
+  "scripts": {
+    "start": "concurrently \"npm run backend\" \"npm run frontend\"",
+    "backend": "cd backend && npm start",
+    "frontend": "cd frontend && npm start",
+    "install-all": "npm install && cd backend && npm install && cd ../frontend && npm install",
+    "dev": "npm run install-all && npm start"
+  },
+  "keywords": ["trading", "leaderboard", "crypto", "exchanges"],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
